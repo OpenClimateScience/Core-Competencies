@@ -19,7 +19,7 @@ CC1 - Project and Data Management
 - 1.6: Chooses appropriate, non-proprietary data file formats based on the size of data, its complexity, and who will access it.
 - 1.7: Creates regular, automated back-ups of all code, documentation, and any derived results that can’t be easily re-created. Does not back-up raw data unless it can’t be reproduced.
 - 1.8: Use lossless file compression for storage, when appropriate, and especially for transfer.
-- 1.9: Creates appropriate metadata for all datasets, recording the creation date, primary data sources, fill values or valid ranges, units, …
+- 1.9: Creates appropriate metadata for all datasets, recording the creation date, primary data sources, fill values or valid ranges, units, ...
 - 1.10: Uses a package manager to install and manage software dependencies.
 
 
@@ -147,6 +147,10 @@ CC3 - Collaborative Computational Science
 - 3.6: Knows how to read API documentation and where to go for help. Creates minimal working examples when sharing code that needs to be debugged or improved.
 - 3.7: Uses consistent and legible coding style, probably informed by a language-specific standard or linting program.
 - 3.8: Chooses variable names that are clear and informative.
+- 3.9: Uses literate programming to combine narrative, code, and analysis results.
+- 3.10: Chooses color scales that are perceptually linear and colorblind-friendly. Understands how visual scales relate to different types of quantitative and qualitative data.
+- 3.11: Avoids misleading data visualization techniques.
+
 
 
 ### CC3.1 - Source Control Management
@@ -217,9 +221,101 @@ A related issue arises regarding units. While important and re-used coefficients
 
 This isn’t always practical or appropriate. In cases where a coefficient is written inline, make sure the units of the quantity are explicitly clear with an accompanying inline comment, e.g.:
 
-temp_correction = (temp_k / 293.15) # 20 deg C as deg K
+    temp_correction = (temp_k / 293.15) # 20 deg C as deg K
 
 
+### CC3.9 - Literate Programming
+
+In literate programming, “the scientist writes a narrative of the scientific analysis and intermingles code directly within the narrative. As the code is executed, a document is generated that includes the code, narratives, and any outputs (e.g., figures, tables) of the code. Accordingly, literate programming helps ensure that readers understand exactly how a particular research result was obtained” (Piccolo & Frampton 2016).
+
+
+### CC3.10 - Appropriate Color Scales
+
+### CC3.11 - Misleading Visualizations
+
+Computational tools like ggplot2 (R) and seaborn (Python) have made it so easy to create plots, we want to ensure that scientists are making decisions that promote effective communication.
+
+
+--
+
+CC4 - Sustainable Computational Science
+---------------------------------------
+
+- 4.1: Understands the difference between replicable and reproducible science.
+- 4.2: Scientific claims or analysis results are created by reproducible workflows, which provide all that is necessary to connect public data with published outputs.
+- 4.3: Computational workflows are documented with both in-line comments and external documentation (a README or API documentation).
+- 4.4: Uses software releases with either semantic or calendar versioning to indicate multiple phases of a computational project.
+- 4.5: Documents runtime input parameters (or non-default parameters) using configuration files, which keep code and data separate. Distinguishes when configuration files or a command-line interface are most appropriate for reusable workflows.
+- 4.6: Verifies correct execution of computer code using integration tests. Understands the difference between model verification and validation.
+- 4.7: Uses assertions to verify assumptions at runtime and provide meaningful feedback to end users.
+- 4.8: Identifies opportunities to develop research software as reusable modules.
+- 4.9: Writes short, simple functions that have no side effects.
+
+
+### CC4.1 - Replicable versus Reproducible
+
+Scientists advocating for “repeatable,” “replicable,” or “reproducible” science have failed to consistently distinguish these terms in the past (Cassey & Blackburn 2006; Davison et al. 2012; Goodman et al. 2016; Plesser 2018), sometimes deliberately, as in Peng (2011), who described “a spectrum of reproducibility,” with “full replication” as the “gold standard.” This definition is consistent with the much decried “replication crises” (Ioannidis 2005; Pashler and Harris 2012) of various disciplines: the failure of bold scientific claims, in some disciplines, to be verified when an experiment is conducted by a third party or under different circumstances.
+
+We use the definitions introduced by the National Science Foundation and reviewed by Goodman et al. (2016). Following the statistical definition of a “replicate” (a different sample or experiment that is comparable with others and therefore lends statistical power), we consider “replication” to be “the ultimate standard” (Peng 2011), wherein new evidence is produced for an existing scientific claim using the same methods but with different data, likely newly collected. We consider “repeatable” and “replicable” to refer to the same thing. A scientific claim is repeatable (or “replicable”) if a third party can perform the same experiment, using the same methods and protocols, but with different data and derive the same conclusion. The exact data values produced may be different but they shouldn’t contradict the prior claim.
+
+Reproducibility is a lower bar; “it is important to note that a study that is reproducible is not necessarily repeatable” (Cassey & Blackburn 2006). A claim or analysis “is reproducible if the analytic data sets and the computer code used to create the data analysis are made available to others for independent study and analysis” (Peng & Hicks 2021). The key distinction is that reproduction involves nothing new; it’s not a new experiment and no new knowledge is added to the discipline. It requires merely “running the same software on the same input data and obtaining the same results” (Rougier et al. 2017).
+
+Beyond terminology, scientists also disagree on the relative importance of replication versus reproduction, with some ecologists arguing that the development of general theories requires only replication (Cassey & Blackburn 2006) and that reproduction is burdensome for authors and reviewers alike (Drummond 2009). It can be argued that reproduction only became relevant with the advent and ubiquity of computational workflows (Peng & Hicks 2021), but this is also an argument for paying heed to reproduction: the internet has made it easier than ever to share data.
+
+
+### CC4.2 - Reproducible Workflows
+
+“Scientific software can often be executed in an automated manner via text-based commands. Using such commands...scientists can indicate the software program(s) to be executed and which parameter(s) should be used. When multiple commands must be executed, they can be compiled into scripts specifying the order in which the commands should be executed” (Piccolo & Frampton 2016). A computer script is a reproducible workflow when all the data required are provided and all the steps to install required software are documented or performed as part of running the script.
+
+Tables, plots, maps, and other research outputs should be able to be regenerated quickly and easily, provided that the underlying data are made available. Konkol et al. (2019) suggest that “figures should be created by using scripts instead of ready-to-use toolboxes, which hide the computational steps.” Scripts provide the connection between publicly available data (“raw data”) and a published result. Scripts provide convenience for you, the researcher, even if you don’t share them (and you should), as “one can then apply slight modifications to these commands, instead of having to specify the plot from scratch” (Sandve et al. 2013).
+
+It should be possible for a third party to obtain your data, run your script, and get the same result that you published. “As a minimum standard, we therefore recommend that code should come with an example workflow...and where possible, also packaged with input and output data to provide a means to ensure correct implementation of a method prior to application” (Hutton et al. 2016). The journal PLOS ONE has suggested making the following data available prior to publication: “The values behind the means, standard deviations and other measures reported; The values used to build graphs; The points extracted from images for analysis.”
+
+
+### CC4.3 - Documentation
+
+“Code should be modularized into functions and classes that may be reuseable [sic] by the wider community, with comments that do not repeat the code, but explain at a higher level of abstraction what individual blocks within modular code are trying to do...Such readable code allows the broader community to verify code intent” (Hutton et al. 2016).
+
+Broadly, there are two kinds of documentation: in-line documentation (code comments) and external documentation. In-line comments should serve to document “interfaces and reasons” (Wilson et al. 2014): clarifying why a line of code was included, where a seemingly arbitrary number comes from, or how a function ought to be used. In-line comments should not be used to provide a plain-language description of an otherwise obvious operation in your code, such as “adding variable1 and variable2 together,” although “total transpiration is the sum of nighttime and daytime transpiration” might be useful commentary.
+
+
+### CC4.4 - Software Releases and Versioning
+
+### CC4.5 - Identifying Runtime Input Parameters
+
+Ease or reproducibility implies ease of reuse (Davison 2012). Any code that is meant to be reused will have parameters that need to change between different executions, e.g.: the input and output data file paths, the year of data used or generated, the specific sites or spatial extent used, the type of scenario, the variable(s) used or generated, the details of the statistical or procedural algorithm, and so on. These are things that are typically changed by end users, either because they are processing different subsets of data or they are experimenting with different factors. Reuse can be important for the researcher who wrote the software, too; they may want to “perform comparisons across different conditions/different code versions/different parametrizations [or] check that a result is robust” (ibid.).
+
+These potential changes are called runtime input parameters (RIP) because they are set at runtime, i.e., when the program is run. They can also be thought of as non-default parameters because the user typically must specify them when the program is run. If someone is trying to reproduce your computational workflow, they must know what RIPs you specified in order to get the same results. There are three main patterns for keeping track of RIPs:
+
+Global variables: The simplest way to make a script reusable is to put the important things that might need to be changed at the very top of the script, as global variables. In C but also in modern interpreted languages, the convention is to use all capital letters for global variables, e.g., `DATA_YEAR = 2023`, `TIME_STEP = "days"`. The capital letters make the variables easy to identify throughout the script, and if they are defined at the very top, it will be easier to change them.
+
+- Configuration file: This is the recommended way to document RIPs. Unless a parameter is defined in your code (i.e., a default parameter), you should have it configurable in some kind of plain-text file that can be shared with someone who wants to use the software in the same way. This plain-text file should be machine-readable, of course, because it will be used to run the software; but it should also be human-readable, because humans will need to change it often. File formats that use key-value pairs, like YAML and JSON, are preferred to formats like XML for legibility and ease of use.
+- Command-line interface: A command-line interface (CLI) can be very useful when you’re experimenting with different RIPs. For example, maybe you are fitting a model using some kind of stochastic optimization; to find the best-fit parameters, the optimization algorithm needs to know what initial guesses to use, what step size to take, and what stopping criteria to use. You might choose to test different combinations of these parameters. If your stochastic optimization software is implemented as a CLI, you can very quickly try out all sorts of combinations, even concurrently (in different terminals), by simply changing a command-line argument. However, a CLI is not good for reproducibility because the arguments may never be documented. If you rely on a CLI as part of your computational workflow, you should clearly and completely document the parameters set on the command line, just as you would have to do if your workflow involved a series of clicks in a graphical user interface.
+
+
+### CC4.6 - Testing
+
+Providing up-to-date and comprehensive tests also makes it more likely that any claim based on your computational workflow will be reproducible because it is easier to ensure both that the software is running correctly and the correct software is used (Davison 2012).
+
+When the result of an integration test is some kind of data file, the file’s contents are usually the subject of examination. We can ask and answer certain questions about the data file more easily than others: the size (in bytes) of the file; the number of rows or columns (in the case of a delimited text file or an array); and average or extreme values among those represented. But did the correct data get written to the file? For many file types, this question can be answered by using a checksum or hash function, i.e., generating a unique sequence of characters based on the file’s contents. Hash functions are designed to produce a unique sequence, or checksum, for every unique, arbitrarily long input data; hence, if the file was reproduced correctly, the checksum should be the same. Furthermore, it is the checksum that can be stored and retrieved for this test, not the file itself. The same considerations apply whether you’re writing a test that examines the file’s contents or checks for a matching checksum:
+
+- The test result is sensitive to the decimal precision used; i.e., 3.14 is not equal to 3.14159265.
+- If date or time information are included in the output, whether a file or data structure, this may be different from the expected test result. Some file types store date and time information in the file’s header, so a checksum of the file will always be different.
+
+
+### CC4.7 - Assertions
+
+
+### CC4.8 - Modularization
+
+Software developers are exhorted to “keep it DRY,” where DRY is an acronym for “Don’t Repeat Yourself.” What this means is that code you’ve written for a specific task, like unit conversion, should be written exactly once. If you need to repeat that task, like converting units in multiple places throughout your code, you shouldn’t re-write (or even copy-paste) the code again. Rather, that task should be written as a reusable function that can be called when you need to use it. This practice generalizes to entire modules in your research code.
+
+Modularization also serves to help keep your code organized and legible. When someone wants to write a computational workflow based on your library of code, they need to know where to go to find a certain function. For example, it would be much easier to find mass-to-volume unit conversion functions in a smaller file called `units.py` than to search for it among one big file called `main.py`.
+
+Similarly, “every piece of data must have a single authoritative representation in the system” (Wilson et al. 2014). If there is a coefficient for unit conversion or representing some physical constant, it could be disastrous to define it differently in different parts of the program. The simplest way to encode an authoritative value is to use a global variable, preferably stored in a way such that it can’t be changed. Configuration files (SK4.4) are one way to establish authoritative values that can be easily identified or changed outside of the source code.
+
+
+---
 
 References
 ==========
