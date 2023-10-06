@@ -11,16 +11,16 @@ CC1 - Project and Data Management
 
 ### Learning Outcomes
 
-- 1.1 Raw data are unmodified and kept separate from any processed derivatives or analysis results.
-- 1.2 A project’s files are organized hierarchically and semantically. Raw data, processed data, code, and outputs are stored in separate folders.
-- 1.3 Uses meaningful but brief filenames and folder names. Uses one of the following strategies: Timestamps, Process hierarchy, or Filename metadata.
-- 1.4 Knows how to navigate a file system using both a graphical user interface (GUI) and a command-line interface (CLI).
-- 1.5 Records relationships between code, results, and metadata, preferably by a filename convention.
-- 1.6 Chooses appropriate, non-proprietary data file formats based on the size of data, its complexity, and who will access it.
-- 1.7 Creates regular, automated back-ups of all code, documentation, and any derived results that can’t be easily re-created. Does not back-up raw data unless it can’t be reproduced.
-- 1.8 Use lossless file compression for storage, when appropriate, and especially for transfer.
-- 1.9 Creates appropriate metadata for all datasets, recording the creation date, primary data sources, fill values or valid ranges, units, …
-- 1.10 Uses a package manager to install and manage software dependencies.
+- 1.1: Raw data are unmodified and kept separate from any processed derivatives or analysis results.
+- 1.2: A project’s files are organized hierarchically and semantically. Raw data, processed data, code, and outputs are stored in separate folders.
+- 1.3: Uses meaningful but brief filenames and folder names. Uses one of the following strategies: Timestamps, Process hierarchy, or Filename metadata.
+- 1.4: Knows how to navigate a file system using both a graphical user interface (GUI) and a command-line interface (CLI).
+- 1.5: Records relationships between code, results, and metadata, preferably by a filename convention.
+- 1.6: Chooses appropriate, non-proprietary data file formats based on the size of data, its complexity, and who will access it.
+- 1.7: Creates regular, automated back-ups of all code, documentation, and any derived results that can’t be easily re-created. Does not back-up raw data unless it can’t be reproduced.
+- 1.8: Use lossless file compression for storage, when appropriate, and especially for transfer.
+- 1.9: Creates appropriate metadata for all datasets, recording the creation date, primary data sources, fill values or valid ranges, units, …
+- 1.10: Uses a package manager to install and manage software dependencies.
 
 
 ### CC1.1 - Keeping Raw Data Separate
@@ -86,6 +86,138 @@ File compression can be used to reduce file sizes and should be used whenever da
 
 
 ### CC1.10 - Software Package Management
+
+
+---
+
+CC2 - Scientific Programming
+----------------------------
+
+- 2.1: Understands how machines represent numbers.
+- 2.2: Understands multidimensional arrays and their use for representing datasets structured by space, time, and multiple variables.
+- 2.3: Writes vectorized code when working with arrays.
+- 2.4: Understands when and how to generate random numbers and specifies the random seed when reporting results.
+- 2.5: Profiles the resource use of a computational workflow.
+- 2.6: Understands different types of concurrency and how to scale up a computational workflow that is limited by throughput or memory.
+- 2.7: Can debug a computational workflow, either by deduction, print statements, breakpoints, or an interactive debugger.
+- 2.8: Understands the difference in how computers read text files versus binary files and is familiar with reading both file types.
+- 2.9: Familiar with the different types of structured datasets used in scientific applications, including spatial datasets (raster and vector) and  hierarchical datasets (e.g., HDF5, netCDF4); how to read them; and how to create self-documenting data files.
+
+
+### CC2.1 - Machine Representation of Numbers
+
+### CC3.2 - Multidimensional Arrays
+
+### CC3.3 - Vectorized Code
+
+### CC3.4 - Random Numbers and Seeds
+
+### CC3.5 - Resource Profiling
+
+### CC3.6 - Concurrency for Scale
+
+As transistor manufacturing approaches physical limits for the size and heat dissipation of the most fundamental computational unit, increases in computational power are more dependent on multi-threaded and multi-process computing, rather than clock speeds (Rüde et al. 2018).
+
+
+### CC3.7 - Debugging
+
+### CC3.8 - Character Encoding and Reading Files
+
+Some data files can be too large to fit into your computer’s memory. Even if they do fit in memory, it might be extremely difficult or slow to work with them using graphical applications like a spreadsheet program, as these programs typically read the entire file into memory when they are opened. Instead, programming languages offer the ability to read in one part of the file at a time.
+
+- Binary files are typically read-in one byte (8 bits) at a time, though you can specify a multiple of bytes to be read if it represents a certain kind of number (e.g., a 32-bit integer).
+- Text files are typically read-in one line at a time. Your programming environment will automatically convert bytes to text characters based on the file’s character encoding, but it may have to guess the encoding and it may be wrong.
+
+Whether reading a binary file or a text file, in most languages, once you open a file for reading, you can only read each part of the file exactly once. The file reading operation only moves forward, so every byte or every line you read cannot be read again until you close and re-open the file. This leads to a potentially confusing situation for new programmers: You’ve opened the file and read it once but when you try to read it again, you get zero lines or zero bytes back. This is because the file reader has a pointer indicating which part you’re reading at any time, and that pointer only moves forward unless you deliberately indicate that it should go backward. This requires “seeking” a certain byte, e.g., the first byte in the file, which sets the pointer back at the beginning.
+
+
+### CC3.9 - Spatial and Hierarchical Datasets
+
+
+---
+
+CC3 - Collaborative Computational Science
+-----------------------------------------
+
+- 3.1: Uses source control management (SCM) or version control to track changes to research software or scripts.
+- 3.2: Make a project’s scripts or other computer artifacts publicly available in a way that enables other scientists to identify licensing, track different versions, make contributions, and re-use computational workflows.
+- 3.3: One or more example workflows are provided for any reusable code.
+- 3.4: Creates and documents how to install research software and the details of the software environment used, either by using virtual environments, build tools, or containers.
+- 3.5: Any published data and code are assigned versions and given unique digital identifiers, preferably digital object identifiers (DOIs).
+- 3.6: Knows how to read API documentation and where to go for help. Creates minimal working examples when sharing code that needs to be debugged or improved.
+- 3.7: Uses consistent and legible coding style, probably informed by a language-specific standard or linting program.
+- 3.8: Chooses variable names that are clear and informative.
+
+
+### CC3.1 - Source Control Management
+
+“Although scripts and code may be included alongside a manuscript as supplementary material, a better alternative is to store them in a public repository with a permanent URL” (Piccolo & Frampton 2016).
+
+
+### CC3.2 - Publishing Code
+
+Public software repositories include [SourceForge](http://sourceforge.net/), [Savannah](http://savannah.gnu.org/), [Bitbucket](https://bitbucket.org/), and [GitHub](https://github.com/). Increasingly, sharing code (and data) is becoming the standard by peer-review journals; [PLOS ONE has guidelines](https://journals.plos.org/plosone/s/materials-and-software-sharing) that exemplify this new ethic of open science.
+
+
+### CC3.3 - Example Workflows
+
+
+### CC3.4 - Software Environments
+
+If end-users cannot install your research software, or any software that it depends on, then your workflow is not reproducible. All computational workflows have software dependencies, ranging from a single programming language’s built-in libraries (as of a specific version) to dozens of third-party libraries that link to system libraries written in other languages. Therefore, it’s critical to identify which dependencies, and what versions of those dependencies, are required to reproduce a claim or result (Piccolo & Frampton 2016). For interpreted (or automatically compiled) languages like R, Python, and Julia, virtual environments allow you to create isolated software environments for each of your research projects: only the dependencies (and versions) necessary for that project will be installed. Virtual environments typically provide a convenient way to install all the dependencies, and the correct versions thereof, automatically. For example, Python’s `pip` package manager can report all the dependencies currently installed in your environment and write that information to a file that can be later used to restore that same environment.
+
+“If moving a computation to a new system, it should be simple and straightforward to set up the environment identically (or nearly so) to that on the original machine(s)” (Davison 2012). This dictum, like making regular backups (CC1.7), can help address the unexpected, like when your computer’s hard drive should fail or you need to re-generate some analysis results quickly and you don’t have access to your original computer. Here are some general guidelines to help make this a reality:
+
+- For a target computing environment, use the established package management system to install software dependencies (Davison 2012). For example, system libraries on an Ubuntu/Debian GNU/Linux system should be installed using `apt` while on Mac OS they should be installed using `homebrew`. In a specific programming language like Python, for example, you should use `pip install` or `conda install` instead of running a `setup.py` script, whenever possible. You should always prefer to use a package management system over installing for source: installation with a package manager will generally be safer, faster, and easier to repeat.
+
+### CC3.5 - Digital Identifiers
+
+### CC3.6 - API Documentation and Minimal Working Examples
+
+### CC3.7 - Consistent and Legible Style
+
+Computer code is primarily meant to be read by humans. It’s not sufficient that it runs without error; it should be easy to read and understand by an independent observer who is familiar with the programming language. In every programming language, there are decisions to be made about whitespace, capitalization, and indentation. Check to see if the programming language you are using has style guidelines; the guidelines for Python, as one example, are encapsulated in [the PEP8 Style Guide for Python Code.](https://peps.python.org/pep-0008/) Research communities and private companies also typically have their own style guides (Scott 2016).
+
+In any language, you and the people who you collaborate with on a single project should agree about naming conventions for functions, classes, and other constructs. Will you use `CamelCaseNaming` or `pothole_case_naming` (Wilson et al. 2014) in compound variable names? Consistent indentation, if not enforced by the language (e.g., Python), and consistent spacing will make editing the code easier, particularly by a third party, which should be desirable for open-source software projects. If consistent style is difficult for you to maintain, possibly because of a large and diverse group of contributors to the code, linting programs can help to automatically enforce style. These programs re-format source code without changing or breaking its functionality and can be integrated with version control tools so as to automatically run when the code is changed.
+
+Key to legible scientific code is the appropriate use of whitespace and parentheses.
+
+Code legibility is also impacted by excessively nested control structures, like nested for loops or nested conditionals, which often manifests as excessive indentation. Nested conditionals could be inverted to allow for off-ramps, i.e., breaking the loop or restarting at the next iteration. Nested for loops are harder to disentangle, but a good strategy is to ensure that the body of each for loop is as short as possible. Preferably, the body of deeply nested for loops consists of a single function call, such that the logic of each nested loop is encapsulated by a separate function. Similarly, if a single line of code gets too long or has too many concepts, e.g.:
+
+```py
+# Difficult to read
+chosen_times = np.argwhere(np.logical_and(np.logical_and(hdf['time'][:,0] == ts0.year, hdf['time'][:,1] == ts0.month), hdf['time'][:,2] == ts0.day))
+
+# Easier to read
+chosen_times = np.argwhere(
+    np.logical_and(np.logical_and(
+        hdf['time'][:,0] == ts0.year,
+        hdf['time'][:,1] == ts0.month),
+        hdf['time'][:,2] == ts0.day))
+```
+
+
+### CC3.8 - Clear and Informative Variable Names
+
+Variable names should reveal as much information as possible and appropriate about what they are currently representing. For example, a variable name like `soil_moisture_percent` is much more informative and meaningful than `theta`. The former is a name that could be searched in the documentation, or online, and also indicates the units of a quantity, which could be important. Variable names should signal your intent for the data they represent, e.g., `mean_temperature_by_site`.
+
+It’s also a good idea to avoid defining variable names that are similar to others already defined, like `hydraulic_conductivity` and `hydraulic_conductance` even if, as in this example, the variable names refer to distinct concepts (appending units to these names or perhaps using a composite data structure like an associative array might help to distinguish them). Similarly, the use of a singular loop variable name with a plural collection can be confusing because, in English, singular and plural names are hard to visually distinguish. For example:
+
+	for (layer in layers) {
+	  ...
+	}
+
+At a glance, and particularly in the body of this for loop, it is easy to confuse one variable (“layer”) for the other (“layers”). This can be particularly difficult for readers for whom English is not their first language.
+
+A related issue arises regarding units. While important and re-used coefficients should be implemented as variables with wide scope, e.g.:
+
+	STEFAN_BOLTZ = 5.67e-8 # Stefan-Boltzmann constant, W m-2 K-4
+	...
+	longwave_net = STEFAN_BOLTZ * (emis_atm - emis_surf) * temp_k**4
+
+This isn’t always practical or appropriate. In cases where a coefficient is written inline, make sure the units of the quantity are explicitly clear with an accompanying inline comment, e.g.:
+
+temp_correction = (temp_k / 293.15) # 20 deg C as deg K
 
 
 
