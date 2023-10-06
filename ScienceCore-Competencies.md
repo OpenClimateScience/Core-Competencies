@@ -27,6 +27,8 @@ CC1 - Project and Data Management
 
 “Results should be reproduced from the earliest digital data in the experiment, whether that is raw data coming from instruments or observations, or data as accessed from a secondary source. It defeats the purpose to supply a ‘cleaned’ version of the data if it is impossible to access the methodology of the cleaning, for example. The goal is that all data manipulations be made transparent, beginning with the initial version of the data with which the researcher started working” (Stodden & Miguez 2014). Presumably, the raw data are publicly available and can be downloaded from a user-friendly website. If not, you should supply the raw data in addition to your code and any important analysis results when publishing or sharing your work. Raw data should never be changed! Unit conversions, corrections, interpolation, aggregation, and other changes should all be performed as part of a reproducible computational workflow and the “cleaned” data should be stored separately.
 
+Similarly, there should be an explicit and continuous chain of processing steps connecting raw data to a "final" result (CC4.2). If the raw data are kept separate and, ideally, are publicly available on the internet, anyone can produce all the intermediate datasets required for your analysis simply by running your processing chain. Therefore, intermediate datasets do not necessarily need to be backed up and may not need to be stored in a public repository. However, this presumes that the scientist has done their due diligence and made it easy for themselves and others to reproduce the intermediate data.
+
 
 ### CC1.2 - Organizing Files and Folders
 
@@ -278,6 +280,13 @@ It should be possible for a third party to obtain your data, run your script, an
 
 Broadly, there are two kinds of documentation: in-line documentation (code comments) and external documentation. In-line comments should serve to document “interfaces and reasons” (Wilson et al. 2014): clarifying why a line of code was included, where a seemingly arbitrary number comes from, or how a function ought to be used. In-line comments should not be used to provide a plain-language description of an otherwise obvious operation in your code, such as “adding variable1 and variable2 together,” although “total transpiration is the sum of nighttime and daytime transpiration” might be useful commentary.
 
+At a minimum, your software should have a README (Turing Way Community 2023) that describes:
+
+- The name and the aims of your project. What is the purpose of the software and why might it be useful?
+- How to install the software.
+- How to run the software for basic use cases; ideally, this would include diagnostic tests (CC4.6) to verify the software has been installed correctly and runs as expected.
+- Acknowledgment of funding sources and collaborators.
+
 
 ### CC4.4 - Software Releases and Versioning
 
@@ -353,5 +362,7 @@ Rougier, N. P., K. Hinsen, F. Alexandre, T. Arildsen, L. A. Barba, F. C. Y. Benu
 Sandve, G. K., A. Nekrutenko, J. Taylor, and E. Hovig. 2013. Ten Simple Rules for Reproducible Computational Research ed. P. E. Bourne. PLoS Computational Biology 9 (10):e1003285.
 
 Stodden, V., and S. Miguez. 2014. Best practices for computational science: Software infrastructure and environments for reproducible and extensible research. Journal of Open Research Software 2 (1):e21.
+
+Turing Way Community, The. 2023. "The Turing Way: A handbook for reproducible, ethical and collaborative research." Version 1.0.2. Accessed: October 6, 2023. https://10.5281/zenodo.7625728
 
 Van den Eynden, Veerle, et al. "Managing and sharing data; a best practice guide for researchers." (2011). 3rd edition. https://repository.essex.ac.uk/2156/1/managingsharing.pdf Accessed: June 12, 2023.
