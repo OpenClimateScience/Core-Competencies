@@ -108,22 +108,22 @@ CC2 - Scientific Programming
 
 ### CC2.1 - Machine Representation of Numbers
 
-### CC3.2 - Multidimensional Arrays
+### CC2.2 - Multidimensional Arrays
 
-### CC3.3 - Vectorized Code
+### CC2.3 - Vectorized Code
 
-### CC3.4 - Random Numbers and Seeds
+### CC2.4 - Random Numbers and Seeds
 
-### CC3.5 - Resource Profiling
+### CC2.5 - Resource Profiling
 
-### CC3.6 - Concurrency for Scale
+### CC2.6 - Concurrency for Scale
 
 As transistor manufacturing approaches physical limits for the size and heat dissipation of the most fundamental computational unit, increases in computational power are more dependent on multi-threaded and multi-process computing, rather than clock speeds (Rüde et al. 2018).
 
 
-### CC3.7 - Debugging
+### CC2.7 - Debugging
 
-### CC3.8 - Character Encoding and Reading Files
+### CC2.8 - Character Encoding and Reading Files
 
 Some data files can be too large to fit into your computer’s memory. Even if they do fit in memory, it might be extremely difficult or slow to work with them using graphical applications like a spreadsheet program, as these programs typically read the entire file into memory when they are opened. Instead, programming languages offer the ability to read in one part of the file at a time.
 
@@ -133,7 +133,7 @@ Some data files can be too large to fit into your computer’s memory. Even if t
 Whether reading a binary file or a text file, in most languages, once you open a file for reading, you can only read each part of the file exactly once. The file reading operation only moves forward, so every byte or every line you read cannot be read again until you close and re-open the file. This leads to a potentially confusing situation for new programmers: You’ve opened the file and read it once but when you try to read it again, you get zero lines or zero bytes back. This is because the file reader has a pointer indicating which part you’re reading at any time, and that pointer only moves forward unless you deliberately indicate that it should go backward. This requires “seeking” a certain byte, e.g., the first byte in the file, which sets the pointer back at the beginning.
 
 
-### CC3.9 - Spatial and Hierarchical Datasets
+### CC2.9 - Spatial and Hierarchical Datasets
 
 
 ---
@@ -160,7 +160,7 @@ CC3 - Collaborative Computational Science
 “Although scripts and code may be included alongside a manuscript as supplementary material, a better alternative is to store them in a public repository with a permanent URL” (Piccolo & Frampton 2016).
 
 
-### CC3.2 - Publishing Code
+### CC3.2 - Public Repositories
 
 Public software repositories include [SourceForge](http://sourceforge.net/), [Savannah](http://savannah.gnu.org/), [Bitbucket](https://bitbucket.org/), and [GitHub](https://github.com/). Increasingly, sharing code (and data) is becoming the standard by peer-review journals; [PLOS ONE has guidelines](https://journals.plos.org/plosone/s/materials-and-software-sharing) that exemplify this new ethic of open science.
 
