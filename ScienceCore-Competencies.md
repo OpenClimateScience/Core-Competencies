@@ -168,7 +168,14 @@ CC3 - Collaborative Computational Science
 
 ### CC3.2 - Public Repositories
 
-Public software repositories include [SourceForge](http://sourceforge.net/), [Savannah](http://savannah.gnu.org/), [Bitbucket](https://bitbucket.org/), and [GitHub](https://github.com/). Increasingly, sharing code (and data) is becoming the standard by peer-review journals; [PLOS ONE has guidelines](https://journals.plos.org/plosone/s/materials-and-software-sharing) that exemplify this new ethic of open science.
+Funding agencies are starting to require that investigators include Data Management Plans or Data Sharing Plans as part of their research proposals. Investigators who write research software are also being asked to develop plans for the publication of their code. Increasingly, sharing code (and data) is a requirement for peer-review, as well; [PLOS ONE has guidelines](https://journals.plos.org/plosone/s/materials-and-software-sharing) that exemplify this new ethic of open science. According to NASA's ["Plan for Increasing Access to the Results of Scientific Research,"](https://www.nasa.gov/sites/default/files/atoms/files/206985_2015_nasa_plan-for-web.pdf) a Data Management Plan "should describe whether and how data generated through the course of the proposed research will be shared and preserved (including timeframe), or explain why data sharing and/or preservation are not possible or scientifically appropriate. At a minimum, [the Plan] must describe how data sharing and preservation will enable validation of published results or how such results could be validated if data are not shared or preserved."
+
+Regardless of the type of computational inference you're conducting, whether funded or unfunded, you should have some kind of plan for how the data and code that you generate will be stored, protected, and ultimately shared. As we point out repeatedly in this document, the scientific conclusions or decision-ready products of your analyses cannot be trusted or properly utilized unless your analysis itself is open and accessible (Stodden & Miguez 2014). This means that your research code and data products should be published online in a format that encourages uptake and reproducibility.
+
+Public software repositories for code include [SourceForge](http://sourceforge.net/), [Savannah](http://savannah.gnu.org/), [Bitbucket](https://bitbucket.org/), and [GitHub](https://github.com/). Public repositories for data include [Zenodo](https://zenodo.org/) and [Dryad](https://datadryad.org) (for ecology and evolutionary biology data). The Smithsonian Institution [maintains a list of many other data repositories on its website.](https://library.si.edu/research/databases-science-research)
+
+What should be included in your Data Management Plan? Again, NASA advises you to think about results that would be presented at the time of peer review: "This includes data (or how to access data) that are displayed in charts and figures. This does not
+include preliminary data; laboratory notebooks; drafts of scientific papers, plans for research; peer-review reports; communications with colleagues; or physical objects, such as laboratory specimens." What kinds of details should you include about the data you are generating? The types of data produced; metadata and formatting standards; access and sharing policies; any privacy and confidentiality requirements; provisions for intellectual property protection, if needed; provisions for re-use and redistribution; and plans for long-term archiving (NASA 2014).
 
 
 ### CC3.3 - Example Workflows
@@ -325,15 +332,25 @@ When the result of an integration test is some kind of data file, the file's con
 
 ### CC4.8 - Modularization
 
+Scientific code bases can be large, particularly when the implementation language is a compiled language like C or Fortran.
+If you were adding new functionality to an existing scientific code base, or trying to use scientific code for an applied problem, where would you look for certain features, like the function that calculates distance or the class that represents a sensor?
+Documentation (CC4.3) could certainly help, but there are several components of a code base that don't regularly appear in documentation, either because of negligence or because they aren't picked up by documentation generators, such as physical constants, convenience functions, and private methods and classes.
+In addition to the frustration of looking through hundreds or thousands of lines of code to find these essential details, there is a risk of duplication or change as the software is updated over time, perhaps by different individuals.
+
 Software developers are exhorted to "keep it DRY," where DRY is an acronym for "Don't Repeat Yourself." What this means is that code you've written for a specific task, like unit conversion, should be written exactly once. If you need to repeat that task, like converting units in multiple places throughout your code, you shouldn't re-write (or even copy-paste) the code again. Rather, that task should be written as a reusable function that can be called when you need to use it. This practice generalizes to entire modules in your research code.
 
 Modularization also serves to help keep your code organized and legible. When someone wants to write a computational workflow based on your library of code, they need to know where to go to find a certain function. For example, it would be much easier to find mass-to-volume unit conversion functions in a smaller file called `units.py` than to search for it among one big file called `main.py`.
 
-Similarly, "every piece of data must have a single authoritative representation in the system" (Wilson et al. 2014). If there is a coefficient for unit conversion or representing some physical constant, it could be disastrous to define it differently in different parts of the program. The simplest way to encode an authoritative value is to use a global variable, preferably stored in a way such that it can't be changed. Configuration files (CC4.4) are one way to establish authoritative values that can be easily identified or changed outside of the source code.
+Similarly, "every piece of data must have a single authoritative representation in the system" (Wilson et al. 2014).
+If there is a coefficient for unit conversion or representing some physical constant, it could be disastrous to define it differently in different parts of the program.
+The simplest way to encode an authoritative value is to use a global variable, preferably stored in a way such that it can't be changed. Configuration files (CC4.4) are another way to establish authoritative values that can be easily identified or changed outside of the source code.
 
 
 ### CC4.9 - Short and Simple Functions
 
+A vibrant software project may be updated over time, by different people, to include all sorts of powerful and interesting features. Inevitably, you might find yourself developing a new function in a code base that already has a very similar function. The old function doesn't do what you need it to but it's also too complex to modify. Your inclination is to just add the new, similar function, but you're going to end up writing a lot of the same business logic over again.
+
+Modularization (CC4.8) implies that no part of your code should repeat or overlap with another part of your code. If there's a specific tool in your code for a given task, that specific tool's business logic shouldn't be repeated elsewhere in your code. One way to help avoid the problems that arise from overlap is to write short and simple functions, as often as possible. Short and simple functions are easier to understand and easier to maintain.
 
 
 ---
@@ -356,6 +373,8 @@ Hutton, C., T. Wagener, J. Freer, D. Han, C. Duffy, and B. Arheimer. 2016. Most 
 Ioannidis, J. P. A. 2005. Why Most Published Research Findings Are False. PLoS Medicine 2 (8):e124.
 
 Michener, W. K. 2015. Ten Simple Rules for Creating a Good Data Management Plan. PLoS Computational Biology. 11(10): e1004525.
+
+NASA. 2014. NASA Plan for Increasing Access to the Results of Scientific Research. Washington, D.C., U.S.A.: NASA Headquarters. https://www.nasa.gov/wp-content/uploads/2021/12/206985_2015_nasa_plan-for-web.pdf.
 
 Pashler, H., and C. R. Harris. 2012. Is the Replicability Crisis Overblown? Three Arguments Examined. Perspectives on Psychological Science 7 (6):531–536.
 
