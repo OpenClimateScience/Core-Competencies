@@ -101,22 +101,32 @@ File compression can be used to reduce file sizes and should be used whenever da
 CC2 - Scientific Programming
 ----------------------------
 
-- 2.1: Understands how machines represent numbers.
-- 2.2: Understands multidimensional arrays and their use for representing datasets structured by space, time, and multiple variables.
-- 2.3: Writes vectorized code when working with arrays.
+- 2.1: Understands machine representations of numeric data types.
+- 2.2: Understands the difference in how computers read text files versus binary files and is familiar with reading both file types.
+- 2.3: Understands multidimensional arrays and their use for representing datasets structured by space, time, and multiple variables.
 - 2.4: Understands when and how to generate random numbers and specifies the random seed when reporting results.
 - 2.5: Profiles the resource use of a computational workflow.
 - 2.6: Understands different types of concurrency and how to scale up a computational workflow that is limited by throughput or memory.
 - 2.7: Can debug a computational workflow, either by deduction, print statements, breakpoints, or an interactive debugger.
-- 2.8: Understands the difference in how computers read text files versus binary files and is familiar with reading both file types.
-- 2.9: Familiar with the different types of structured datasets used in scientific applications, including spatial datasets (raster and vector) and  hierarchical datasets (e.g., HDF5, netCDF4); how to read them; and how to create self-documenting data files.
+- 2.8: Familiar with the different types of structured datasets used in scientific applications, including spatial datasets (raster and vector) and hierarchical datasets (e.g., HDF5, netCDF4); how to read them; and how to create self-documenting data files.
 
 
 ### CC2.1 - Machine Representation of Numbers
 
-### CC2.2 - Multidimensional Arrays
+While the intricacies of binary representation of floating-point numbers are not essential to a practitioner's knowledge of computer-aided analysis, it is essential that practitioners are familiar with different numeric data types and the limits of their precision, as this can affect results and the inferences or decisions based on those results.
 
-### CC2.3 - Vectorized Code
+
+### CC2.2 - Character Encoding and Reading Files
+
+In addition to numeric data types (CC2.1), practitioners should be familiar with how computers represent other types of data, including text data, and how these data are read from a file into a computer's memory. Some data files can be too large to fit into your computer's memory. Even if they do fit in memory, it might be extremely difficult or slow to work with them using graphical applications like a spreadsheet program, as these programs typically read the entire file into memory when they are opened. Instead, programming languages offer the ability to read in one part of the file at a time.
+
+- Binary files are typically read-in one byte (8 bits) at a time, though you can specify a multiple of bytes to be read if it represents a certain kind of number (e.g., a 32-bit integer).
+- Text files are typically read-in one line at a time. Your programming environment will automatically convert bytes to text characters based on the file's character encoding, but it may have to guess the encoding and it may be wrong.
+
+Whether reading a binary file or a text file, in most languages, once you open a file for reading, you can only read each part of the file exactly once. The file reading operation only moves forward, so every byte or every line you read cannot be read again until you close and re-open the file. This leads to a potentially confusing situation for new programmers: You've opened the file and read it once but when you try to read it again, you get zero lines or zero bytes back. This is because the file reader has a pointer indicating which part you're reading at any time, and that pointer only moves forward unless you deliberately indicate that it should go backward. This requires "seeking" a certain byte, e.g., the first byte in the file, which sets the pointer back at the beginning.
+
+
+### CC2.3 - Multidimensional Arrays
 
 ### CC2.4 - Random Numbers and Seeds
 
@@ -129,17 +139,7 @@ As transistor manufacturing approaches physical limits for the size and heat dis
 
 ### CC2.7 - Debugging
 
-### CC2.8 - Character Encoding and Reading Files
-
-Some data files can be too large to fit into your computer's memory. Even if they do fit in memory, it might be extremely difficult or slow to work with them using graphical applications like a spreadsheet program, as these programs typically read the entire file into memory when they are opened. Instead, programming languages offer the ability to read in one part of the file at a time.
-
-- Binary files are typically read-in one byte (8 bits) at a time, though you can specify a multiple of bytes to be read if it represents a certain kind of number (e.g., a 32-bit integer).
-- Text files are typically read-in one line at a time. Your programming environment will automatically convert bytes to text characters based on the file's character encoding, but it may have to guess the encoding and it may be wrong.
-
-Whether reading a binary file or a text file, in most languages, once you open a file for reading, you can only read each part of the file exactly once. The file reading operation only moves forward, so every byte or every line you read cannot be read again until you close and re-open the file. This leads to a potentially confusing situation for new programmers: You've opened the file and read it once but when you try to read it again, you get zero lines or zero bytes back. This is because the file reader has a pointer indicating which part you're reading at any time, and that pointer only moves forward unless you deliberately indicate that it should go backward. This requires "seeking" a certain byte, e.g., the first byte in the file, which sets the pointer back at the beginning.
-
-
-### CC2.9 - Spatial and Hierarchical Datasets
+### CC2.8 - Spatial and Hierarchical Datasets
 
 
 ---
