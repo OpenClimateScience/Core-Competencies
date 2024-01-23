@@ -149,9 +149,9 @@ CC3 - Collaborative Computational Science
 
 - 3.1: Uses source control management (SCM) or version control to track changes to research software or scripts.
 - 3.2: Make a project's scripts or other computer artifacts publicly available in a way that enables other scientists to identify licensing, track different versions, make contributions, and re-use computational workflows.
-- 3.3: One or more example workflows are provided for any reusable code.
-- 3.4: Creates and documents how to install research software and the details of the software environment used, either by using virtual environments, build tools, or containers.
-- 3.5: Any published data and code are assigned versions and given unique digital identifiers, preferably digital object identifiers (DOIs).
+- 3.3: Any published data and code are assigned versions and given unique digital identifiers, preferably digital object identifiers (DOIs).
+- 3.4: One or more example workflows are provided for any reusable code.
+- 3.5: Documents how to install research software and the details of the software environment used, either by using virtual environments, build tools, or containers.
 - 3.6: Knows how to read API documentation and where to go for help. Creates minimal working examples when sharing code that needs to be debugged or improved.
 - 3.7: Uses consistent and legible coding style, probably informed by a language-specific standard or linting program.
 - 3.8: Chooses variable names that are clear and informative.
@@ -178,10 +178,13 @@ What should be included in your Data Management Plan? Again, NASA advises you to
 include preliminary data; laboratory notebooks; drafts of scientific papers, plans for research; peer-review reports; communications with colleagues; or physical objects, such as laboratory specimens." What kinds of details should you include about the data you are generating? The types of data produced; metadata and formatting standards; access and sharing policies; any privacy and confidentiality requirements; provisions for intellectual property protection, if needed; provisions for re-use and redistribution; and plans for long-term archiving (NASA 2014).
 
 
-### CC3.3 - Example Workflows
+### CC3.3 - Digital Identifiers
 
 
-### CC3.4 - Software Environments
+### CC3.4 - Example Workflows
+
+
+### CC3.5 - Software Environments
 
 If end-users cannot install your research software, or any software that it depends on, then your workflow is not reproducible. All computational workflows have software dependencies, ranging from a single programming language's built-in libraries (as of a specific version) to dozens of third-party libraries that link to system libraries written in other languages. Therefore, it's critical to identify which dependencies, and what versions of those dependencies, are required to reproduce a claim or result (Piccolo & Frampton 2016). For interpreted (or automatically compiled) languages like R, Python, and Julia, virtual environments allow you to create isolated software environments for each of your research projects: only the dependencies (and versions) necessary for that project will be installed. Virtual environments typically provide a convenient way to install all the dependencies, and the correct versions thereof, automatically. For example, Python's `pip` package manager can report all the dependencies currently installed in your environment and write that information to a file that can be later used to restore that same environment.
 
@@ -189,7 +192,6 @@ If end-users cannot install your research software, or any software that it depe
 
 - For a target computing environment, use the established package management system to install software dependencies (Davison 2012). For example, system libraries on an Ubuntu/Debian GNU/Linux system should be installed using `apt` while on Mac OS they should be installed using `homebrew`. In a specific programming language like Python, for example, you should use `pip install` or `conda install` instead of running a `setup.py` script, whenever possible. You should always prefer to use a package management system over installing for source: installation with a package manager will generally be safer, faster, and easier to repeat.
 
-### CC3.5 - Digital Identifiers
 
 ### CC3.6 - API Documentation and Minimal Working Examples
 
